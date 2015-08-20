@@ -1,0 +1,41 @@
+<html>
+<head>
+	<link type='type/css' rel='stylesheet' href='style.css'/>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="code.js"></script>
+	<script type="text/javascript" src="LevelData.js"></script>
+</head>
+<body>
+<div id="MainView">
+	<div id="LevelSelect">
+		<div class="Level" onclick="SelectLevel(0)"><div class="LevelName">1</div><div class="LevelDifficulty"></div></div>
+		<div class="Level" onclick="SelectLevel(1)"><div class="LevelName">2</div><div class="LevelDifficulty"></div></div>
+		<div class="Level" onclick="SelectLevel(2)"><div class="LevelName">3</div><div class="LevelDifficulty"></div></div>
+		<div class="Level" onclick="SelectLevel(3)"><div class="LevelName">4</div><div class="LevelDifficulty"></div></div>
+	</div>
+	<div id="QuestScreen">
+		<div id="PlayerIcon">P</div>
+		<div id="EnemyIcon">E</div>
+		<div id="Background"></div>
+		<div id="Stats">
+			<div id="Player">Player:
+				<div id="PHealth"></div>
+				<div id="PDamage"></div>
+				<div id="PLevel"></div>
+			</div>
+			<div id="Enemy"> 
+				<div id="EName">Enemy:</div>
+				<div id="EHealth"></div>
+				<div id="EDamage"></div>
+			</div>
+		</div>
+	</div>
+	<div id="Profile">
+		<button onclick="SellAll()">Sell All</button> <div id="Money">$0</div><button onclick="LevelUp()">Level Up</button><div id="LevelUpCost">$125</div>
+		<div id="Inventory">
+
+		</div>
+	</div>
+</div>
+</body>
+</html>
