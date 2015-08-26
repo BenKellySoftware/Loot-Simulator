@@ -4,7 +4,7 @@ A basic system for randomised loot drops and level generation.
 # Future Plans
  - Create a graphical overlay for a map where you choose your levels from
  - Create Seperate store screen
- - You can buy buffs and health potions from the store
+ - Buffs and health potions available for purchase from the store
  - A tutorial system
  - Improved balancing that stretches out later levels, and increases difficulty to the point where buffs and health potions are required
  - Graphics in levels, player and enemy sprites, backgrounds.
