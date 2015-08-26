@@ -1,5 +1,5 @@
 # Loot-Simulator
-A basic system for randomised loot drops and level generation.
+A simplified rpg system based around randomised loot drops and level generation.
 
 # Future Plans
  - Create a graphical overlay for a map where you choose your levels from
