@@ -1,4 +1,4 @@
-# Description
+# Loot Simulator
 A simplified rpg system based around randomised loot drops and level generation.
 
 # Future Plans
