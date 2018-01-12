@@ -1,0 +1,54 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<!-- CDNs -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.6.2/pixi.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/keyboardjs/2.4.1/keyboard.min.js"></script> -->
+
+	<!-- Offline Libs -->
+	<script src="lib/jquery-3.2.1.min.js"></script>
+	<script src="lib/jquery-ui-1.12.1.min.js"></script>
+	<script src="lib/keyboard-2.4.1.min.js"></script>
+
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="helpers.js"></script>
+	<script type="text/javascript" src="LevelData.js"></script>
+</head>
+<body>
+<div id="mainView">
+	<div id="levelSelect">
+		<div class="level" onclick="SelectLevel(0)"><div class="levelName">1</div><div class="levelDifficulty"></div></div>
+		<div class="level" onclick="SelectLevel(1)"><div class="levelName">2</div><div class="levelDifficulty"></div></div>
+		<div class="level" onclick="SelectLevel(2)"><div class="levelName">3</div><div class="levelDifficulty"></div></div>
+		<div class="level" onclick="SelectLevel(3)"><div class="levelName">4</div><div class="levelDifficulty"></div></div>
+	</div>
+	<div id="questScreen">
+		<div id="playerIcon">P</div>
+		<div id="enemyIcon">E</div>
+		<div id="background"></div>
+		<div id="stats">
+			<div id="player">Player:
+				<div id="pHealth"></div>
+				<div id="pDamage"></div>
+				<div id="pLevel"></div>
+			</div>
+			<div id="enemy"> 
+				<div id="eName">Enemy:</div>
+				<div id="eHealth"></div>
+				<div id="eDamage"></div>
+			</div>
+		</div>
+	</div>
+	<div id="profile">
+		<button onclick="SellAll()">Sell All</button>
+		<div id="money">$0</div>
+		<button onclick="LevelUp()">Level Up</button>
+		<div id="levelUpCost">$125</div>
+		<button onclick="LootDrop(Player.Level, [200, 400, 600, 800])">Generate Item</button>
+		<ul id="inventory"></ul>
+	</div>
+</div>
+</body>
+</html>

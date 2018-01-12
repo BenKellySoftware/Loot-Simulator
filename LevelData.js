@@ -100,13 +100,13 @@ var QuestData = [
 ];
 
 var Weapons = {
-	Poor: 		["Weak ",		"Broken ",		"Twisted ",		"Damaged ",		"Cracked ",		"Blunt ",		"Redundant ",	"Unlucky ",		"Forgotten "],
-	Normal: 	["Basic ",		"Stock ",		"Typical ",		"Common ",		"Regular ",		"Ordinary ",	"", "", "", "", "", "", ""],
+	Weak:		["Weak ",		"Broken ",		"Twisted ",		"Damaged ",		"Cracked ",		"Blunt ",		"Redundant ",	"Unlucky ",		"Forgotten "],
+	Standard:	["Standard ",	"Basic ",		"Stock ",		"Typical ",		"Common ",		"Regular ",		"Ordinary ", 	"", "", "", "", "", "", ""],
 	Rare:		["Rare ",		"Damaging ",	"Precious ",	"Razor Sharp ",	"Valuable ",	"Shiny ",		"Deadly ",		"Formidable ",	"Barbed ",		"Precise "],
-	Special: 	["Flaming ",	"Serated ",		"Enchanted ",	"Vicious ",		"Electrified ",	"Energy ",		"Homicidal ",	"Gory ",		"Runic ",		"Stealty "],
+	Special:	["Flaming ",	"Serated ",		"Enchanted ",	"Vicious ",		"Electrified ",	"Energy ",		"Homicidal ",	"Gory ",		"Runic ",		"Stealty "],
 	Modifiers:	["Flaming ",	"Electrified ",	"Poisoned ",	"Corrosive", 	"Piercing"],
-	Legendary:	["Unequaled ",	"Legendary ",	"Miraculous ",	"Malicious ",	"Divine ",		"Fabled "],
-	Name: [
+	Legendary:	["Legendary ",	"Unequaled ",	"Miraculous ",	"Malicious ",	"Divine ",		"Fabled "],
+	Name:		[
 		"Spoon",		"Stick",	"Plank with Nail", 	"Club", 			"Rock", 			"Bone",			"Bat",		"Gloves",			"Hoe",			"Glass Shard",
 		"Dagger",		"Saw",		"Machete",			"Staff", 			"Hammer", 			"Cleaver",		"Knuckles",	"Gauntlets",		"Pickaxe",		"Hatchet",
 		"Spear",		"Tessen",	"Short Sword",		"Sickle", 			"Cutlass",			"Darts",		"Mace",		"Sling Shot",		"Broad Sword", 	"Bolas",
@@ -117,10 +117,10 @@ var Weapons = {
 };
 
 var Armour = {
-	Poor: ["Weak ", "Broken ", "Damaged ", "Cracked ", "Unlucky ", "Forgotten"],
-	Normal: ["Basic ", "Stock ", "Typical ", "Common ", "Regular ", "Ordinary ", "", "", "", "", "", "", ""],
-	Rare: ["Rare ", "Protective ", "Reinforced ", "Solid ", "Valuable ", "Shiny ", "Resistant "],
-	Special: ["Flame Proof ", "Blazing ", "Enchanted ", "Virtuous ", "Camoflagued ", "Runic "],
-	Legendary: ["Unequaled ", "Legendary ", "Miraculous ", "Benevolent ", "Divine ", "Fabled "],
-	Name: ["Beard", "Cloth", "Robes", "Leather", "Chainmail", "Plates"]
+	Weak:		["Weak ", "Broken ", "Damaged ", "Cracked ", "Unlucky ", "Forgotten", "Clunky"],
+	Standard:	["Basic ", "Stock ", "Typical ", "Common ", "Regular ", "Ordinary ", "", "", "", "", "", "", ""],
+	Rare:		["Rare ", "Protective ", "Reinforced ", "Solid ", "Valuable ", "Shiny ", "Resistant "],
+	Special:	["Flame Proof ", "Blazing ", "Enchanted ", "Virtuous ", "Camoflagued ", "Runic "],
+	Legendary:	["Unequaled ", "Legendary ", "Miraculous ", "Benevolent ", "Divine ", "Fabled "],
+	Name:		["Beard", "Cloth", "Robes", "Leather", "Chainmail", "Plates"]
 };

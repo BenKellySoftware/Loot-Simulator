@@ -1,4 +1,4 @@
-#MainView {
+#mainView {
 	top: 0;
 	left: calc(50% - 400px);
 	width: 800px;
@@ -7,21 +7,22 @@
 	overflow: hidden;
 }
 
-#QuestScreen, #LevelSelect {
+#questScreen, #levelSelect {
 	height: 250px;
 	overflow: hidden;
 }
-.Level {
+
+.level {
 	background-color: orange;
 	height: 40px;
 }
 
-.LevelName {
+.levelName {
 	float: left;
 	margin-right: 10px;
 }
 
-#Background {
+#background {
 	position: absolute;
 	width: 800px;
 	height: 50px;
@@ -30,48 +31,61 @@
 	background-image: url("Images/Background.png");
 }
 
-#EnemyIcon {
+#enemyIcon {
 	position: absolute;
 	right: 0;
 	top: 80px;
 }
-#PlayerIcon {
+
+#playerIcon {
 	position: absolute;
 	left: 0;
 	top: 80px;
 }
 
-#Player {
+#player {
 	position: absolute;
 	top: 150px;
 	left: 20px;
 }
 
-#Enemy {
+#enemy {
 	position: absolute;
 	top: 150px;
 	right: 20px;
 }
 
-.Item {
-	width: 140px;
-	height: 50px;
+/*Inventory*/
+#inventory { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+
+.item {
+	margin: 2px;
+	font-size: 1em;
+	text-align: center;
+	width: 80px;
+	height: 80px;
+	padding: 5px; 
 	float: left;
 }
+.itemName {
+	height: 70px;
+	vertical-align: middle;
+}
 
-.ItemDamage, .ItemValue, .ItemLevel, .ItemFavorite {
+.itemDamage, .itemValue, .itemLevel, .itemFavorite {
 	width: 100px;
 	height: 35px;
 	float: left;
 	margin-left: 20px;
 }
-.ItemSell, .ItemEquip {
+
+.itemSell, .itemEquip {
 	width: 90px;
 	height: 20px;
 	margin-left: 20px;
 }
 
-.Details {
+.details {
 	position: relative;
 	top: 0px;
 	display: none;
@@ -80,32 +94,26 @@
 	background-color: inherit;
 }
 
-
-.Rarity0
-{
+.Weak {
 	color: grey;
 	background-color: darkgrey;
 }
 
-.Rarity1
-{
+.Standard {
 	color: white;
 	background-color: darkgreen;
 }
 
-.Rarity2
-{
+.Rare {
 	color: white;
 	background-color: darkblue;
 }
 
-.Rarity3
-{
+.Special {
 	background-color: purple;
 }
 
-.Rarity4
-{
+.Legendary {
 	color: yellow;
-	background-color: Orange;
+	background-color: orange;
 }
