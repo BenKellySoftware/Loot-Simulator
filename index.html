@@ -6,24 +6,39 @@
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.6.2/pixi.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/keyboardjs/2.4.1/keyboard.min.js"></script> -->
+	<script src="https://use.fontawesome.com/e7bbe945d3.js"></script>
 
 	<!-- Offline Libs -->
 	<script src="lib/jquery-3.2.1.min.js"></script>
 	<script src="lib/jquery-ui-1.12.1.min.js"></script>
 	<script src="lib/keyboard-2.4.1.min.js"></script>
+	<script src='lib/knockout-3.4.2.min.js'></script>
+
 
 	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="interface.js"></script>
 	<script type="text/javascript" src="helpers.js"></script>
 	<script type="text/javascript" src="LevelData.js"></script>
 </head>
 <body>
-<div id="mainView">
+<div id="game">
+	<div id="profile">
+		<div class="slider horizontal"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+		<div id="profilePanel">
+			<div id="charScreen"></div>
+			<div id="inventoryWrapper">
+				<ul id="inventory"></ul>
+			</div>
+		</div>
+	</div>
+
 	<div id="levelSelect">
 		<div class="level" onclick="SelectLevel(0)"><div class="levelName">1</div><div class="levelDifficulty"></div></div>
 		<div class="level" onclick="SelectLevel(1)"><div class="levelName">2</div><div class="levelDifficulty"></div></div>
 		<div class="level" onclick="SelectLevel(2)"><div class="levelName">3</div><div class="levelDifficulty"></div></div>
 		<div class="level" onclick="SelectLevel(3)"><div class="levelName">4</div><div class="levelDifficulty"></div></div>
 	</div>
+
 	<div id="questScreen">
 		<div id="playerIcon">P</div>
 		<div id="enemyIcon">E</div>
@@ -41,13 +56,12 @@
 			</div>
 		</div>
 	</div>
-	<div id="profile">
+	<div id="utility">
 		<button onclick="SellAll()">Sell All</button>
 		<div id="money">$0</div>
 		<button onclick="LevelUp()">Level Up</button>
 		<div id="levelUpCost">$125</div>
 		<button onclick="LootDrop(Player.Level, [200, 400, 600, 800])">Generate Item</button>
-		<ul id="inventory"></ul>
 	</div>
 </div>
 </body>

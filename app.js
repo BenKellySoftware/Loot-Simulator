@@ -181,7 +181,7 @@ function LootDrop (Level, RarityChance) {
 	};
 
 	Player.Inventory.push(Item);
-	$("#inventory").append("<li class='item "+Rarity+"' data="+Item.Id+"><div class='itemName' onclick='$(this).siblings().slideToggle();'>"+Item.Name+"</div><div class='details'><div class='itemDamage'>Damage: "+Item.Damage+"</div><div class='itemLevel'>Level: "+Item.Level+"</div><div class='itemValue'>Value: "+Item.Value+"</div><div class='itemFavorite'>Favorite<input onchange='Favorite(this)' type='checkbox'></div><button onclick='Equip(this)' class='itemEquip'>Equip</button><button onclick='Sell(this)' class='itemSell'>Sell</button></div></li>");
+	$("#inventory").append("<li class='item "+Rarity+"' data="+Item.Id+"><div class='itemName'><p>"+Item.Name+"</p></div></li>");
 }
 
 function Favorite(e) {
