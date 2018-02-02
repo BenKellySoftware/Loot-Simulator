@@ -1,256 +1,247 @@
-var Player = {
-	Level: 1,
-	MaxHealth: 100,
-	Health: 100,
-	Money: 0,
-	Equiped: {
-		Id: 0,
-		Name: "Broken Stick",
-		Rarity: "Weak",
-		Level: 1,
-		Damage: 6,
-		Value: 10,
-		Favorite: true,
+var player = {
+	level: 1,
+	maxHealth: 100,
+	health: 100,
+	money: 0,
+	equiped: {
+		id: 0,
+		name: "Broken Stick",
+		rarity: "Weak",
+		level: 1,
+		damage: 6,
+		value: 10,
+		favourite: true,
 	},
-	Inventory: [
+	inventory: [
 	]
 }
 
-var AvailableLevels = [
+var availableLevels = [
 	{
-	Id: 1,
-	Difficulty: 1},
+	id: 1,
+	difficulty: 1},
 	{
-	Id: 3,
-	Difficulty: 2},
+	id: 3,
+	difficulty: 2},
 	{
-	Id: 5,
-	Difficulty: 3},
+	id: 5,
+	difficulty: 3},
 	{
-	Id: 16,
-	Difficulty: 4}
+	id: 16,
+	difficulty: 4}
 ];
 
 //Current Quest Info
-var EnemyProgress = 0;
-var SelectedLevel = 0;
-var Difficulty = 1;
+var enemyProgress = 0;
+var selectedLevel = 0;
+var difficulty = 1;
 
 
 $(document).ready(function(){
-    $('#inventory').sortable();
-    $('#inventory').disableSelection();
-	for (var i = 0; i < AvailableLevels.length; i++) {
-		$(".level:eq("+i+")").children(".levelName").text(QuestData[AvailableLevels[i].Id].Name);
-		$(".level:eq("+i+")").children(".levelDifficulty").text(AvailableLevels[i].Difficulty);
-	};
 	$("#questScreen").hide();
+	for (var i = 0; i < availableLevels.length; i++) {
+		$(".level:eq("+i+")").children(".levelName").text(QuestData[availableLevels[i].id].name);
+		$(".level:eq("+i+")").children(".levelDifficulty").text(availableLevels[i].difficulty);
+	};
 });
 
-function NewQuest(Slot) {
-	if (Slot < 3) {
-		AvailableLevels[Slot].Id = 1 + Math.floor(Math.random()*15);
-		AvailableLevels[Slot].Difficulty = Player.Level - Math.floor(Math.random()*3) + Slot;
-		if (AvailableLevels[Slot].Difficulty < 1) {
-			AvailableLevels[Slot].Difficulty = 1;
+function newQuest(slot) {
+	if (slot < 3) {
+		availableLevels[slot].id = 1 + Math.floor(Math.random()*15);
+		availableLevels[slot].difficulty = player.Level - Math.floor(Math.random()*3) + slot;
+		if (availableLevels[slot].difficulty < 1) {
+			availableLevels[slot].difficulty = 1;
 		}
 	}
 	else {
-		AvailableLevels[Slot].Id ++;
-		if (AvailableLevels[Slot].Id > 25) {
-			AvailableLevels[Slot].Id = 16;
+		availableLevels[slot].id ++;
+		if (availableLevels[slot].id > 25) {
+			availableLevels[slot].id = 16;
 		};
-		AvailableLevels[Slot].Difficulty = Player.Level + 3;
+		availableLevels[slot].difficulty = player.Level + 3;
 	}
-	$(".level:eq("+Slot+")").children(".levelName").text(QuestData[AvailableLevels[Slot].Id].Name);
-	$(".level:eq("+Slot+")").children(".levelDifficulty").text(AvailableLevels[Slot].Difficulty);
+	$(".level:eq("+slot+")").children(".levelName").text(QuestData[availableLevels[slot].id].name);
+	$(".level:eq("+slot+")").children(".levelDifficulty").text(availableLevels[slot].difficulty);
 }
 
-function SelectLevel (e) {
- 	SelectedLevel = e;
+function selectLevel (e) {
+ 	selectedLevel = e;
 	$("#questScreen").show();
 	$("#levelSelect").hide();
-	Difficulty = AvailableLevels[e].Difficulty;
-	EnemyProgress = 0;
+	difficulty = availableLevels[e].difficulty;
+	enemyProgress = 0;
 	$("#playerIcon").animate({left: "375px"}, {queue: false, duration: 500});
-	Battle();
+	battle();
 }
 
-function Battle() {
+function battle() {
 	// Clone enemy from level data
-	Enemy = $.extend( true, {}, Enemies[QuestData[AvailableLevels[SelectedLevel].Id].Enemies[EnemyProgress]]);
-	Enemy.Health = Math.floor(Enemy.Health * Math.pow(1.2,Difficulty-1));
-	Stats();
-	$("#enemyIcon").text(Enemy.Symbol);
+	enemy = $.extend( true, {}, Enemies[QuestData[availableLevels[selectedLevel].id].enemies[enemyProgress]]);
+	enemy.health = Math.floor(enemy.health * Math.pow(1.2,difficulty-1));
+	stats();
+	$("#enemyIcon").text(enemy.symbol);
 	$("#enemyIcon").animate({right: "375px"}, {queue: false, duration: 500});
 	$("#background").animate({"background-position": "-=375px"}, {duration: 500});
 	setTimeout(function() {
-		Attack();
+		attack();
 	}, 750);
 }
 
-function Attack() {
-	console.log(Player.Equiped.Damage, Enemy.Health);
-	Player.Health -= Math.floor(Enemy.Damage * Math.pow(1.2,Difficulty-1));
-	Enemy.Health -= Player.Equiped.Damage;
-	if (Player.Health < 0) {
-		Player.Health = Player.MaxHealth;
+function attack() {
+	console.log(player.equiped.damage, enemy.health);
+	player.health -= Math.floor(enemy.damage * Math.pow(1.2,difficulty-1));
+	enemy.health -= player.equiped.damage;
+	if (player.health < 0) {
+		player.health = player.maxHealth;
 		$("#questScreen").hide();
 		$("#levelSelect").show();
-		Player.Money = 0;
-		Player.Equiped = {
-			Id: 0,
-			Name: "Broken Stick",
-			Rarity: "Weak",
-			Level: Player.Level,
-			Damage: Math.floor(6 * Math.pow(1.2, Player.Level-1)),
-			Value: 0,
-			Favorite: false,
+		player.money = 0;
+		player.equiped = {
+			id: 0,
+			name: "Broken Stick",
+			rarity: "Weak",
+			level: player.level,
+			damage: Math.floor(6 * Math.pow(1.2, player.level-1)),
+			value: 0,
+			favourite: false,
 		};
-		Player.Inventory = [];
-		$('#money').text("Money: $" + Player.Money);
+		player.inventory = [];
+		$('#money').text("Money: $" + player.money);
 		$("#inventory").empty();
 		//FailQuest
-		Stats();
+		stats();
 		return;
 	}
-	if (Enemy.Health > 0) {
-		Stats();
+	if (enemy.health > 0) {
+		stats();
 		setTimeout(function() {
-			Attack();
+			attack();
 		}, 750);
 	}
 	else {
 		// console.log("Kill");
 		$("#enemyIcon").css({right: "0"});
-		switch (Enemy.Type) {
+		switch (enemy.type) {
 			case 0:
 				//Health Drop
 				if (Math.random() > 0.7) {
-					Player.Health += Math.round(Player.MaxHealth/4);
-					if (Player.Health > Player.MaxHealth) {Player.Health = Player.MaxHealth};
+					player.health += Math.round(player.maxHealth/4);
+					if (player.health > player.maxHealth) {player.health = player.maxHealth};
 				}
 				if (Math.random() > 0.8){
-					LootDrop(Difficulty, [300, 900, 990, 1000]);
+					lootDrop(difficulty, [300, 900, 990, 1000]);
 				}
 			break;
 			case 1:
-				Player.Health = Player.MaxHealth;
-				LootDrop(Difficulty, [100, 750, 950, 995]);
+				player.health = player.maxHealth;
+				lootDrop(difficulty, [100, 750, 950, 995]);
 			break;
 			case 2:
-				Player.Health = Player.MaxHealth;
+				player.health = player.maxHealth;
 
-				LootDrop(Difficulty, [0, 300, 850, 970]); LootDrop(Difficulty, [100, 750, 950, 995]);
+				lootDrop(difficulty, [0, 300, 850, 970]); lootDrop(difficulty, [100, 750, 950, 995]);
 			break;
 		}
-		EnemyProgress++;
-		if (EnemyProgress < QuestData[AvailableLevels[SelectedLevel].Id].Enemies.length) {
-			Battle();
+		enemyProgress++;
+		if (enemyProgress < QuestData[availableLevels[selectedLevel].id].enemies.length) {
+			battle();
 		}
 		else {
 			$("#questScreen").hide();
 			$("#levelSelect").show();
-			NewQuest(SelectedLevel);
+			newQuest(selectedLevel);
 			//EndQuest
 		}
 	}
 }
 
-var ItemID = 1;
-function LootDrop (Level, RarityChance) {
-	var RarityNames = ["Weak", "Standard", "Rare", "Special", "Legendary"];
-
-	ItemID++;
-	var Random = Math.floor(Math.random() * 1000);
-	var Quality = 0
-	while (Random >= RarityChance[Quality]) {
-		Quality++;
+var itemId = 1;
+function lootDrop (level, rarityChance) {
+	var random = Math.floor(Math.random() * 1000);
+	var quality = 0
+	while (random >= rarityChance[quality]) {
+		quality++;
 	}
-	var Rarity = RarityNames[Quality];
-	var Kind = Weapons.Name[Level - 1 + Math.floor(Math.random() * 6)];
+	var rarity = RarityNames[quality];
+	var kind = Weapons.name[level - 1 + Math.floor(Math.random() * 6)];
 
-	var Item = {
-		Id: ItemID,
-		Name: Weapons[Rarity].sample() + Kind,
-		Rarity: Rarity,
-		Level: Level,
-		Damage: Math.floor((6.5 + (Math.random()/2) + Quality) * Math.pow(1.2, Level-1)),
-		Value: Math.floor((10 + Math.random()/2) * (1 + Quality/2) * Math.pow(1.2, Level-1)),
-		Favorite: false
+	var item = {
+		id: itemId,
+		name: Weapons[rarity].sample() + kind,
+		rarity: rarity,
+		level: level,
+		damage: Math.floor((6.5 + (Math.random()/2) + quality) * Math.pow(1.2, level-1)),
+		value: Math.floor((10 + Math.random()/2) * (1 + quality/2) * Math.pow(1.2, level-1)),
+		favourite: false
 	};
 
-	Player.Inventory.push(Item);
-	$("#inventory").append("<li class='item "+Rarity+"' data="+Item.Id+"><div class='itemName'><p>"+Item.Name+"</p></div></li>");
+	player.inventory.push(item);
+	$("#inventory").append("<div class='item "+rarity+"' data-id="+item.id+"><div class='itemName'><p>"+item.name+"</p></div></div>");
+	itemId++;
 }
 
-function Favorite(e) {
-	for (var i = 0; i < Player.Inventory.length; i++) {
-		if (Player.Inventory[i].Id == $(e).parent().parent().parent().attr("data")) {
-			Player.Inventory[i].Favorite = !Player.Inventory[i].Favorite;
-		}
-	}
-}
-
-function Equip(e) {
-	for (var i = 0; i < Player.Inventory.length; i++) {
-		if (Player.Inventory[i].Id == $(e).parent().parent().attr("data")) {
-			if (Player.Inventory[i].Level <= Player.Level) {
-				Player.Inventory.push(Player.Equiped);
-				$("#inventory").append("<div class='item "+Player.Equiped.Rarity+"' data="+Player.Equiped.Id+"><div onclick='$(this).siblings().slideToggle();' style='height: 50px' align='center'>"+Player.Equiped.Name+"</div><div class='details'><div class='itemDamage'>Damage: "+Player.Equiped.Damage+"</div><div class='itemLevel'>Level: "+Player.Equiped.Level+"</div><div class='itemValue'>Value: "+Player.Equiped.Value+"</div><div class='itemFavorite'>Favorite<input onchange='Favorite(this)' type='checkbox'></div><button onclick='Equip(this)' class='itemEquip'>Equip</button><button onclick='Sell(this)' class='itemSell'>Sell</button></div></div>");
-				if (Player.Equiped.Favorite) {
-					$(".item").last().children().children().children("input").attr("checked", "");
-				}
-				Player.Equiped = Player.Inventory[i];
-				Player.Inventory.splice(i,1);
-				$(e).parent().parent().remove();
-			}
-		}
-	}
-}
-
-function Sell(e) {
-	for (var i = 0; i < Player.Inventory.length; i++) {
-		if (Player.Inventory[i].Id == $(e).parent().parent().attr("data")) {
-			Player.Money += Player.Inventory[i].Value;
-			Player.Inventory.splice(i,1);
-			$(e).parent().parent().remove();
-			$('#money').text("Money: $"+ Player.Money);
-		}
-	}
-}
-
-function SellAll() {
-	$(".item").each(function(e) {
-		for (var i = 0; i < Player.Inventory.length; i++) {
-			if (Player.Inventory[i].Id == $(this).attr("data") && !($(this).children().children().children("input").is(':checked'))) {
-				Player.Money += Player.Inventory[i].Value;
-				Player.Inventory.splice(i,1);
-				$(this).remove();
-			}
-		}
+function favourite(id) {
+	item = player.inventory.find(function(item) {
+			return item.id == id;
 	});
-	$('#money').text("Money: $"+ Player.Money);
-}
-
-function LevelUp () {
-	if (Player.Money >= Math.floor(125 * Math.pow(1.2,Player.Level-1))) {
-		Player.Money -= Math.floor(125 * Math.pow(1.2,Player.Level-1));
-		Player.Level ++;
-		Player.MaxHealth = Math.floor(100 * Math.pow(1.2,Player.Level-1));
-		Player.Health = Player.MaxHealth;
-		$('#money').text("Money: $" + Player.Money);
-		$('#levelUpCost').text("Cost: $" + Math.floor(125 * Math.pow(1.2,Player.Level-1)));
-		$('#pLevel').text("Level: " + Player.Level);
-		$("#pHealth").text("Health: " + Player.Health);
+	if (item) {
+		item.favourite = !item.favourite
 	}
 }
 
-function Stats() {
-	$("#pHealth").text("Health: " + Player.Health);
-	$("#pDamage").text("Damage: " + Player.Equiped.Damage);
-	$("#pLevel").text("Level: " + Player.Level);
-	$("#eName").text(Enemy.Name + ":");
-	$("#eHealth").text("Health: " + Enemy.Health);
-	$("#eDamage").text("Damage: " + Math.floor(Enemy.Damage * Math.pow(1.2,Difficulty-1)));
+function equip(id) {
+	index = player.inventory.findIndex(function(item) {
+			return item.id == id;
+	});
+	console.log(index);
+	if (index != -1) {
+		item = player.inventory[index];
+		$("#inventory").append("<div class='item "+player.equiped.rarity+"' data-id="+player.equiped.id+"><div class='itemName'><p>"+player.equiped.name+"</p></div></div>");
+		$("[data-id="+id+"]").remove();
+		player.inventory.push(player.equiped);
+		player.equiped = item;
+		player.inventory.splice(index,1);
+	}
+}
+
+function sell(id) {
+	index = player.inventory.findIndex(function(item) {
+			return item.id == id;
+	});
+	if (index != -1) {
+		item = player.inventory[index];
+		player.money += item.value;
+		player.inventory.splice(index,1);
+		$("[data-id="+id+"]").remove();		
+		$('#money').text("Money: $"+ player.money);
+	}
+}
+
+function sellAll() {
+	// Need to work backwards to prevent edit while iterating problems
+	for (var i = player.inventory.length - 1; i >= 0; i--) {
+		sell(player.inventory[i].id);
+	}
+}
+
+function levelUp () {
+	if (player.money >= Math.floor(125 * Math.pow(1.2,player.level-1))) {
+		player.money -= Math.floor(125 * Math.pow(1.2,player.level-1));
+		player.level ++;
+		player.maxHealth = Math.floor(100 * Math.pow(1.2,player.level-1));
+		player.health = player.maxHealth;
+		$('#money').text("Money: $" + player.money);
+		$('#levelUpCost').text("Cost: $" + Math.floor(125 * Math.pow(1.2,player.level-1)));
+		$('#pLevel').text("Level: " + player.level);
+		$("#pHealth").text("Health: " + player.health);
+	}
+}
+
+function stats() {
+	$("#pHealth").text("Health: " + player.health);
+	$("#pDamage").text("Damage: " + player.equiped.damage);
+	$("#pLevel").text("Level: " + player.level);
+	$("#eName").text(enemy.name + ":");
+	$("#eHealth").text("Health: " + enemy.health);
+	$("#eDamage").text("Damage: " + Math.floor(enemy.damage * Math.pow(1.2,difficulty-1)));
 }

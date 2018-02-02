@@ -27,16 +27,16 @@
 		<div id="profilePanel">
 			<div id="charScreen"></div>
 			<div id="inventoryWrapper">
-				<ul id="inventory"></ul>
+				<div id="inventory"></div>
 			</div>
 		</div>
 	</div>
 
 	<div id="levelSelect">
-		<div class="level" onclick="SelectLevel(0)"><div class="levelName">1</div><div class="levelDifficulty"></div></div>
-		<div class="level" onclick="SelectLevel(1)"><div class="levelName">2</div><div class="levelDifficulty"></div></div>
-		<div class="level" onclick="SelectLevel(2)"><div class="levelName">3</div><div class="levelDifficulty"></div></div>
-		<div class="level" onclick="SelectLevel(3)"><div class="levelName">4</div><div class="levelDifficulty"></div></div>
+		<div class="level" onclick="selectLevel(0)"><div class="levelName">1</div><div class="levelDifficulty"></div></div>
+		<div class="level" onclick="selectLevel(1)"><div class="levelName">2</div><div class="levelDifficulty"></div></div>
+		<div class="level" onclick="selectLevel(2)"><div class="levelName">3</div><div class="levelDifficulty"></div></div>
+		<div class="level" onclick="selectLevel(3)"><div class="levelName">4</div><div class="levelDifficulty"></div></div>
 	</div>
 
 	<div id="questScreen">
@@ -57,11 +57,11 @@
 		</div>
 	</div>
 	<div id="utility">
-		<button onclick="SellAll()">Sell All</button>
+		<button onclick="sellAll()">Sell All</button>
 		<div id="money">$0</div>
-		<button onclick="LevelUp()">Level Up</button>
+		<button onclick="levelUp()">Level Up</button>
 		<div id="levelUpCost">$125</div>
-		<button onclick="LootDrop(Player.Level, [200, 400, 600, 800])">Generate Item</button>
+		<button onclick="lootDrop(player.level, [200, 400, 600, 800])">Generate Item</button>
 	</div>
 </div>
 </body>

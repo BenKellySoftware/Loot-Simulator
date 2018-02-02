@@ -1,8 +1,28 @@
 * {
 	margin: 0;
 	padding: 0;
-	
+	font-family: metamorphous;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
 
 @font-face {
     font-family: metamorphous;
@@ -26,11 +46,11 @@
 	#profile {
 		position: absolute;
 		height: 100%;
-		width: 280px;
+		width: 300px;
 		left: auto;
 		top: 0;
 		right: 0;
-		z-index: 999;
+		z-index: 10;
 	}
 
 	.slider.horizontal {
@@ -74,19 +94,20 @@
 	#inventory {
 		height: 100%;
 		position: relative;
-		font-family: metamorphous;
-		font-size: 8px;
-		list-style-type: none;
 		background-color: lightblue;
 		overflow-y: auto;
+		overflow-x: hidden;
+		padding-left: 5px;
+		padding-bottom: 4px;
 	}
 
 	#inventory:empty::after{
-		text-align: center;
 		position: relative;
 		margin: 10px;
 		top: 10px;
+		font-family: metamorphous;
 		font-size: 15px;
+		text-align: center;
   		content: "Empty Inventory";
 	}
 
@@ -98,9 +119,11 @@
 		height: 50px;
 		padding: 5px; 
 		float: left;
+		z-index: 90;
 	}
 
 	.itemName {
+		font-size: 8px;
 		height: 100%;
 		width: 100%;
 		display: table;
@@ -184,48 +207,48 @@
 	}
 
 /*RARITY*/
-	.Weak {
+	.weak {
 		color: white;
 		background-color: rgb(128, 128, 128);
 	}
 
-	.Weak > .details {
+	.weak > .details {
 		background-color: rgba(128, 128, 128, 0.9);
 	}
 
-	.Standard {
+	.standard {
 		color: white;
 		background-color: rgb(0, 170, 76);
 	}
 	
-	.Standard > .details {
+	.standard > .details {
 		background-color: rgba(0, 170, 76, 0.9);
 	}
 
-	.Rare {
+	.rare {
 		color: white;
 		background-color: rgb(0, 140, 192);
 	}
 	
-	.Rare > .details {
+	.rare > .details {
 		background-color: rgba(0, 140, 192, 0.9);
 	}
 
-	.Special {
+	.special {
 		color: white;
 		background-color: rgb(172, 0, 230);
 	}
 	
-	.Special > .details {
+	.special > .details {
 		background-color: rgba(172, 0, 230, 0.9);
 	}
 
-	.Legendary {
+	.legendary {
 		color: white;
 		background-color: rgb(219, 158, 28);
 	}
 	
-	.Legendary > .details {
+	.legendary > .details {
 		background-color: rgba(219, 158, 28, 0.9);
 	}
 /*END*/
