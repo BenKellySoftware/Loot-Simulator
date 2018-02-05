@@ -48,7 +48,7 @@ $(document).ready(function(){
 function newQuest(slot) {
 	if (slot < 3) {
 		availableLevels[slot].id = 1 + Math.floor(Math.random()*15);
-		availableLevels[slot].difficulty = player.Level - Math.floor(Math.random()*3) + slot;
+		availableLevels[slot].difficulty = player.level - Math.floor(Math.random()*3) + slot;
 		if (availableLevels[slot].difficulty < 1) {
 			availableLevels[slot].difficulty = 1;
 		}
@@ -58,7 +58,7 @@ function newQuest(slot) {
 		if (availableLevels[slot].id > 25) {
 			availableLevels[slot].id = 16;
 		};
-		availableLevels[slot].difficulty = player.Level + 3;
+		availableLevels[slot].difficulty = player.level + 3;
 	}
 	$(".level:eq("+slot+")").children(".levelName").text(QuestData[availableLevels[slot].id].name);
 	$(".level:eq("+slot+")").children(".levelDifficulty").text(availableLevels[slot].difficulty);
@@ -88,7 +88,6 @@ function battle() {
 }
 
 function attack() {
-	console.log(player.equiped.damage, enemy.health);
 	player.health -= Math.floor(enemy.damage * Math.pow(1.2,difficulty-1));
 	enemy.health -= player.equiped.damage;
 	if (player.health < 0) {
@@ -119,7 +118,6 @@ function attack() {
 		}, 750);
 	}
 	else {
-		// console.log("Kill");
 		$("#enemyIcon").css({right: "0"});
 		switch (enemy.type) {
 			case 0:

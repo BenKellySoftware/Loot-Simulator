@@ -9,6 +9,14 @@ var profilePanel = {
 	// open: 280
 }
 
+var charPanel = {
+	visible: true,
+	element: "#charScreen",
+	direction: "height",
+	closed: 20,
+	open: 250,
+}
+
 function panelSlide(panel) {
 	var css = {};
 	css[panel.direction] = panel.visible ? panel.closed : panel.open;
@@ -26,5 +34,9 @@ $(document).ready(function() {
 	$("#profile > .slider.horizontal i").click(function() {
 		panelSlide(profilePanel);
 		$(this).toggleClass("fa-chevron-right fa-chevron-left");
+	});
+	$("#charScreen > .slider.vertical i").click(function() {
+		panelSlide(charPanel);
+		$(this).toggleClass("fa-chevron-up fa-chevron-down");
 	});
 });
