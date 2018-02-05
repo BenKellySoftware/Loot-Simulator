@@ -14,11 +14,13 @@
 	<script src="lib/keyboard-2.4.1.min.js"></script>
 	<script src='lib/knockout-3.4.2.min.js'></script>
 
-
+	<script type="text/javascript" src="helpers.js"></script>
+	<script type="text/javascript" src="levelData.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="interface.js"></script>
-	<script type="text/javascript" src="helpers.js"></script>
-	<script type="text/javascript" src="LevelData.js"></script>
+	<script type="text/javascript" src="inventory.js"></script>
+	<script type="text/javascript" src="item.js"></script>
+	<script type="text/javascript" src="character.js"></script>
 </head>
 <body>
 <div id="game">
@@ -59,11 +61,11 @@
 		</div>
 	</div>
 	<div id="utility">
-		<button onclick="sellAll()">Sell All</button>
+		<button onclick="inventory.sellAll()">Sell All</button>
 		<div id="money">$0</div>
-		<button onclick="levelUp()">Level Up</button>
+		<button onclick="character.levelUp()">Level Up</button>
 		<div id="levelUpCost">$125</div>
-		<button onclick="lootDrop(player.level, [200, 400, 600, 800])">Generate Item</button>
+		<button onclick="inventory.lootDrop(character.level, [200, 400, 600, 800])">Generate Item</button>
 	</div>
 </div>
 </body>
