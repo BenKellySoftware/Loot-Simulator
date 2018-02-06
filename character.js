@@ -36,4 +36,11 @@ class Character {
 			}
 		}
 	}
+
+	defeat() {
+		this.health = this.maxHealth;
+		this.equiped = new Item("Broken Stick", 0, 1, Math.floor(6 * Math.pow(1.2, character.level-1)), 10, true);
+		inventory.money = 0;
+		inventory.items = [];
+	}
 }

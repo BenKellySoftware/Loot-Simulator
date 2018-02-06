@@ -179,19 +179,14 @@
 	}
 
 /*QUEST*/
-	#questScreen, #levelSelect {
+	#questScreen, #questSelect {
 		height: 250px;
 		overflow: hidden;
 	}
 
-	.level {
+	.quest {
 		background-color: orange;
 		height: 40px;
-	}
-
-	.levelName {
-		float: left;
-		margin-right: 10px;
 	}
 
 	#background {

@@ -15,12 +15,13 @@
 	<script src='lib/knockout-3.4.2.min.js'></script>
 
 	<script type="text/javascript" src="helpers.js"></script>
-	<script type="text/javascript" src="levelData.js"></script>
+	<script type="text/javascript" src="data.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="interface.js"></script>
 	<script type="text/javascript" src="inventory.js"></script>
 	<script type="text/javascript" src="item.js"></script>
 	<script type="text/javascript" src="character.js"></script>
+	<script type="text/javascript" src="quest.js"></script>
 </head>
 <body>
 <div id="game">
@@ -36,13 +37,9 @@
 		</div>
 	</div>
 
-	<div id="levelSelect">
-		<div class="level" onclick="selectLevel(0)"><div class="levelName">1</div><div class="levelDifficulty"></div></div>
-		<div class="level" onclick="selectLevel(1)"><div class="levelName">2</div><div class="levelDifficulty"></div></div>
-		<div class="level" onclick="selectLevel(2)"><div class="levelName">3</div><div class="levelDifficulty"></div></div>
-		<div class="level" onclick="selectLevel(3)"><div class="levelName">4</div><div class="levelDifficulty"></div></div>
+	<div id="questSelect" data-bind="foreach: {data: quests, as: 'quest'}">
+		<div class="quest" data-bind="click: quest.start, text: quest.display"></div>
 	</div>
-
 	<div id="questScreen">
 		<div id="playerIcon">P</div>
 		<div id="enemyIcon">E</div>
