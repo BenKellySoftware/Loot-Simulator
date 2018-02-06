@@ -25,25 +25,15 @@ class Quest {
 			} else {
 				var challenge = "Normal"
 			}
-			return QuestData[this.id].name + ": Level " + this.difficulty + "(" + challenge + ")";
+			return QuestData[this.id].name + ": Level " + this.difficulty + " (" + challenge + ")";
     	}, this);
 	}
 
-	get id() {
-		return this.idKo();
-	}
+	get id() { return this.idKo(); }
+	set id(id) { this.idKo(id);	}
 
-	set id(id) {
-		this.idKo(id);
-	}
-
-	get difficulty() {
-		return this.difficultyKo();
-	}
-
-	set difficulty(difficulty) {
-		this.difficultyKo(difficulty);
-	}
+	get difficulty() { return this.difficultyKo(); }
+	set difficulty(difficulty) { this.difficultyKo(difficulty);	}
 
 	start() {
 		$("#questScreen").show();
@@ -75,16 +65,15 @@ class Quest {
 			$("#background").animate({"background-position": "-=375px"}, {duration: 500});
 			
 			while (enemy.health > 0) {
-				character.health -= enemy.damage;
-				enemy.health -= character.equiped.damage;
 				stats(enemy);
 				yield;
+				character.health -= enemy.damage;
+				enemy.health -= character.equiped.damage;
 				if (character.health < 0) {
 					character.defeat();
-					break;
+					return;
 				}
 			}
-
 			switch (enemy.type) {
 				case 0:
 					//Health Drop
@@ -95,12 +84,10 @@ class Quest {
 					if (Math.random() > 0.8){
 						inventory.lootDrop(this.difficulty, [300, 900, 990, 1000]);
 					}
-				break;
-				case 1:
+				break; case 1:
 					character.health = character.maxHealth;
 					inventory.lootDrop(this.difficulty, [100, 750, 950, 995]);
-				break;
-				case 2:
+				break; case 2:
 					character.health = character.maxHealth;
 					inventory.lootDrop(this.difficulty, [0, 300, 850, 970]); inventory.lootDrop(this.difficulty, [100, 750, 950, 995]);
 				break;

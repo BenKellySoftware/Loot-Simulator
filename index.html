@@ -46,9 +46,9 @@
 		<div id="background"></div>
 		<div id="stats">
 			<div id="player">Player:
-				<div id="pHealth"></div>
-				<div id="pDamage"></div>
-				<div id="pLevel"></div>
+				<div>Health: <span data-bind="text: health"></span> / <span data-bind="text: maxHealth"></span></div>
+				<!-- <div>Damage: <span data-bind="text: equipped.damage"></span></div> -->
+				<div>Level: <span data-bind="text: level"></span></div>
 			</div>
 			<div id="enemy"> 
 				<div id="eName">Enemy:</div>

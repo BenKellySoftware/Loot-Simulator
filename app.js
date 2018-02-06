@@ -4,13 +4,11 @@ $(document).ready(function(){
 	quests = new QuestsVM();
 
 	ko.applyBindings(quests, document.getElementById("questSelect"));
+	ko.applyBindings(character, document.getElementById("player"));
 	$("#questScreen").hide();
 });
 
 function stats(enemy) {
-	$("#pHealth").text("Health: " + character.health);
-	$("#pDamage").text("Damage: " + character.equiped.damage);
-	$("#pLevel").text("Level: " + character.level);
 	$("#eName").text(enemy.name + ":");
 	$("#eHealth").text("Health: " + enemy.health);
 	$("#eDamage").text("Damage: " + enemy.damage);

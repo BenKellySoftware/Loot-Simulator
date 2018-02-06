@@ -1,24 +1,37 @@
 class Character {
 	constructor(name, level = 1) {
-		this.name = name
-		this.level = level;
-		this.maxHealth = Math.floor(100 * Math.pow(1.2,level-1));
-		this.health = this.maxHealth;
+		this.nameKo = ko.observable(name);
+		this.levelKo = ko.observable(level);
+		this.maxHealthKo = ko.computed(function() {
+			return Math.floor(100 * Math.pow(1.2,this.level-1));			
+		}, this);
+		this.levelUpCostKo = ko.computed(function() {
+			return Math.floor(125 * Math.pow(1.2,this.level-1));			
+		}, this);
+		this.healthKo = ko.observable(this.maxHealthKo());
 		this.equiped = new Item("Broken Stick", 0, 1, 6, 10, true);
 	}
 
-	levelUp() {
-		if (inventory.money >= Math.floor(125 * Math.pow(1.2,this.level-1))) {
-			inventory.money -= Math.floor(125 * Math.pow(1.2,this.level-1));
-			this.level ++;
-			this.maxHealth = Math.floor(100 * Math.pow(1.2,this.level-1));
-			this.health = this.maxHealth;
+	get name() { return this.nameKo(); }
+	set name(name) { this.nameKo(name); }
 
-			// TODO: Knockout Bindings
+	get level() { return this.levelKo(); }
+	set level(level) { this.levelKo(level); }
+
+	get maxHealth() { return this.maxHealthKo(); }
+	set maxHealth(maxHealth) { this.maxHealthKo(maxHealth); }
+
+	get health() { return this.healthKo(); }
+	set health(health) { this.healthKo(health); }
+
+	levelUp() {
+		if (inventory.money >= this.levelUpCostKo()) {
+			inventory.money -= this.levelUpCostKo();
+			this.level ++;
+
+			// // TODO: Knockout Bindings
 			$('#money').text("Money: $" + inventory.money);
 			$('#levelUpCost').text("Cost: $" + Math.floor(125 * Math.pow(1.2,this.level-1)));
-			$('#pLevel').text("Level: " + this.level);
-			$("#pHealth").text("Health: " + this.health);
 		}
 	}
 
