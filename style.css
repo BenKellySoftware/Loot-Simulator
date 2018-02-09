@@ -23,7 +23,6 @@
     background: #555; 
 }
 
-
 @font-face {
     font-family: metamorphous;
     src: url(font/metamorphous/metamorphous.ttf);
@@ -78,8 +77,9 @@
 	}
 
 	.slider.vertical {
+		position: relative;
 		border-top: 2px solid blue;
-		top: calc(100% - 20px);
+		/*bottom: 20px;*/
 		left: 0;
 		width: 100%;
 		height: 20px;
@@ -90,7 +90,6 @@
 		position: absolute;
 		height: 20px;
 		line-height: 20px;
-		top: calc(50% - 10px);
 		text-align: center;
 		width: 100%;
 	}
@@ -102,9 +101,14 @@
 		width: calc(100% - 20px);
 	}
 
-	#charScreen {
+	#characterWrapper {
 		height: 250px;
-		background-color: red;
+		overflow-y: hidden;
+	}
+
+	#characterDetails {
+		height: 250px;
+		background-color: lightblue;
 	}
 
 	#inventoryWrapper {
@@ -156,17 +160,7 @@
 		vertical-align: middle;
 	}
 
-	.itemDamage, .itemValue, .itemLevel, .itemFavorite {
-		width: 100px;
-		height: 35px;
-		float: left;
-		margin-left: 20px;
-	}
-
-	.itemSell, .itemEquip {
-		width: 90px;
-		height: 20px;
-		margin-left: 20px;
+	#sellAll {
 	}
 
 	.itemDetails {

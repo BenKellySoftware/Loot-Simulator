@@ -5,10 +5,10 @@ class Character {
 		this.maxHealthKo = ko.computed(function() {
 			return Math.floor(100 * Math.pow(1.2,this.level-1));			
 		}, this);
+		this.healthKo = ko.observable(this.maxHealth);
 		this.levelUpCostKo = ko.computed(function() {
 			return Math.floor(125 * Math.pow(1.2,this.level-1));			
 		}, this);
-		this.healthKo = ko.observable(this.maxHealthKo());
 		this.equiped = new Item("Broken Stick", 0, 1, 6, 10, true);
 	}
 
@@ -24,14 +24,14 @@ class Character {
 	get health() { return this.healthKo(); }
 	set health(health) { this.healthKo(health); }
 
+	get levelUpCost() { return this.levelUpCostKo();}
+
 	levelUp() {
 		if (inventory.money >= this.levelUpCostKo()) {
 			inventory.money -= this.levelUpCostKo();
 			this.level ++;
-
-			// // TODO: Knockout Bindings
-			$('#money').text("Money: $" + inventory.money);
-			$('#levelUpCost').text("Cost: $" + Math.floor(125 * Math.pow(1.2,this.level-1)));
+		} else {
+			console.log("Not enough money to level up")
 		}
 	}
 

@@ -5,7 +5,12 @@ class QuestsVM {
 		this.quests.push(new Quest(3,2,2));
 		this.quests.push(new Quest(5,3,3));
 		this.quests.push(new Quest(16,4,4));
+		this.activeKo = ko.observable(false);
 	}
+
+	get active() { return this.activeKo(); }
+	set active(active) { this.activeKo(active); }
+
 
 	toList() {
 		return this.quests();
@@ -36,8 +41,7 @@ class Quest {
 	set difficulty(difficulty) { this.difficultyKo(difficulty);	}
 
 	start() {
-		$("#questScreen").show();
-		$("#questSelect").hide();
+		quests.active = true;
 		character.health = character.maxHealth;
 		let loop = this.combat();
 		this.loop(this, loop);
@@ -96,8 +100,7 @@ class Quest {
 	}
 
 	end() {
-		$("#questScreen").hide();
-		$("#questSelect").show();
+		quests.active = false;
 		this.new();
 	}
 

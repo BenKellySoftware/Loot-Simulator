@@ -4,28 +4,25 @@ var profilePanel = {
 	direction: "right",
 	closed: -280,
 	open: 0,
-	// direction: "width",
-	// closed: 20,
-	// open: 280
 }
 
 var charPanel = {
 	visible: true,
-	element: "#charScreen",
+	element: "#characterWrapper",
 	direction: "height",
-	closed: 20,
+	closed: 0,
 	open: 250,
 }
 
 function panelSlide(panel) {
 	var css = {};
 	css[panel.direction] = panel.visible ? panel.closed : panel.open;
-	$(panel.element).animate(css);
+	$(panel.element).animate(css, 500);
 	panel.visible = !panel.visible;
 }
 
 $(document).ready(function() {
-	$('#inventory').sortable({
+	$('#items').sortable({
 		appendTo: '#game',
 		helper: 'clone',
 	});
@@ -35,7 +32,7 @@ $(document).ready(function() {
 		panelSlide(profilePanel);
 		$(this).toggleClass("fa-chevron-right fa-chevron-left");
 	});
-	$("#charScreen > .slider.vertical i").click(function() {
+	$("#profilePanel > .slider.vertical i").click(function() {
 		panelSlide(charPanel);
 		$(this).toggleClass("fa-chevron-up fa-chevron-down");
 	});

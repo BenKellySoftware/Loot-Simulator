@@ -24,46 +24,51 @@
 	<script type="text/javascript" src="quest.js"></script>
 </head>
 <body>
-<div id="game">
-	<div id="profile">
-		<div class="slider horizontal"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
-		<div id="profilePanel">
-			<div id="charScreen">
+	<div id="game">
+		<div id="profile">
+			<div class="slider horizontal"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+			<div id="profilePanel">
+				<div id="characterWrapper">
+					<div id="characterDetails">
+						<div id="equip" class="itemHolder"></div>
+						<div><b><span data-bind="text: name"><:</b></div>
+						<div>Health: <span data-bind="text: health"></span> / <span data-bind="text: maxHealth"></span></div>
+						<div>Level: <span data-bind="text: level"></span></div>
+						<div data-bind="click: levelUp">Level Up ($<span data-bind="text: levelUpCost"></span>)</div>
+					</div>
+				</div>
 				<div class="slider vertical"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+				<div id="inventoryWrapper">
+					<div id="inventory">
+						<div id="money">Money: <span data-bind="text: money"></span></div>
+						<div id="sellAll" data-bind="click: sellAll">Sell All</div>
+						<div id="generateItem" data-bind="click: lootDrop(character.level, [200, 400, 600, 800])">Generate Item</div>
+						<div id="items" data-bind="foreach: {data: items, as: 'item'}">
+							<div data-bind="data: {id: item.id}, attr: {class: 'item ' + item.rarityName}">
+								<div class='itemName'><p data-bind="text: item.name"></p></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div id="inventoryWrapper">
-				<div id="inventory"></div>
+		</div>
+		<div id="main">
+			<div id="questSelect" data-bind="foreach: {data: quests, as: 'quest'}, visible: !active">
+				<div class="quest" data-bind="click: quest.start, text: quest.display"></div>
+			</div>
+			<div id="questScreen" data-bind="visible: active">
+				<div id="playerIcon">P</div>
+				<div id="enemyIcon">E</div>
+				<div id="background"></div>
+				<div id="stats">
+					<div id="enemy"> 
+						<div id="eName">Enemy:</div>
+						<div id="eHealth"></div>
+						<div id="eDamage"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
-	<div id="questSelect" data-bind="foreach: {data: quests, as: 'quest'}">
-		<div class="quest" data-bind="click: quest.start, text: quest.display"></div>
-	</div>
-	<div id="questScreen">
-		<div id="playerIcon">P</div>
-		<div id="enemyIcon">E</div>
-		<div id="background"></div>
-		<div id="stats">
-			<div id="player">Player:
-				<div>Health: <span data-bind="text: health"></span> / <span data-bind="text: maxHealth"></span></div>
-				<!-- <div>Damage: <span data-bind="text: equipped.damage"></span></div> -->
-				<div>Level: <span data-bind="text: level"></span></div>
-			</div>
-			<div id="enemy"> 
-				<div id="eName">Enemy:</div>
-				<div id="eHealth"></div>
-				<div id="eDamage"></div>
-			</div>
-		</div>
-	</div>
-	<div id="utility">
-		<button onclick="inventory.sellAll()">Sell All</button>
-		<div id="money">$0</div>
-		<button onclick="character.levelUp()">Level Up</button>
-		<div id="levelUpCost">$125</div>
-		<button onclick="inventory.lootDrop(character.level, [200, 400, 600, 800])">Generate Item</button>
-	</div>
-</div>
 </body>
 </html>

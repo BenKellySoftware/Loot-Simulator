@@ -3,8 +3,9 @@ $(document).ready(function(){
 	inventory = new Inventory();
 	quests = new QuestsVM();
 
-	ko.applyBindings(quests, document.getElementById("questSelect"));
-	ko.applyBindings(character, document.getElementById("player"));
+	ko.applyBindings(quests, document.getElementById("main"));
+	ko.applyBindings(character, document.getElementById("characterDetails"));
+	ko.applyBindings(inventory, document.getElementById("inventory"));
 	$("#questScreen").hide();
 });
 
